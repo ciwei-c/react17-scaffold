@@ -1,13 +1,12 @@
 import { Button, Result, ResultProps } from "antd";
 import { HOME_URL } from "@/utils/config";
 import "./index.less";
-import { ReactPropsWithHistory } from "@/types/global";
+import { useHistory } from "react-router-dom";
 
-type Props = ReactPropsWithHistory & ResultProps;
-
-const Error = (props: Props) => {
+const Error = (props: ResultProps) => {
+  const history = useHistory()
   const goHome = () => {
-    props.history.replace(HOME_URL)
+    history.replace(HOME_URL)
   };
   return (
     <Result

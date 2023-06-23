@@ -4,7 +4,7 @@ import History from "@types/history/index.d.ts";
 interface MetaProps {
 	keepAlive?: boolean;
 	requiresAuth?: boolean;
-	title: string;
+	title?: string;
 	key?: string;
 }
 

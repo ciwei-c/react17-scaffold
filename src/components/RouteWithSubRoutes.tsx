@@ -1,13 +1,17 @@
-import { Route } from "react-router-dom";
+import useRouterAuth from "@/hooks/useRouterAuth";
+import { CustomRouteObject } from "@/types/global";
+import { Redirect, Route } from "react-router-dom";
 
-function RouteWithSubRoutes(route: any) {
+function RouteWithSubRoutes(route: CustomRouteObject) {
+  const { next } = useRouterAuth(route)
   return (
-    <Route
+    next ? <Route
       path={route.path}
       render={props => (
         <route.component {...props} routes={route.children} />
-      )}
-    />
+      )
+      }
+    /> : <Redirect to="/login"></Redirect>
   );
 }
 

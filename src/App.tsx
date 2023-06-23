@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { HashRouter, Link, Redirect, Route, Switch } from "react-router-dom"
+import routes from '@/routes';
+import RouteWithSubRoutes from '@/components/RouteWithSubRoutes';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+  render(): React.ReactNode {
+    return (
+      <HashRouter>
+        <div>
+          <ul>
+            <li>
+              <Link to="/home">home</Link>
+            </li>
+            <li>
+              <Link to="/about">about</Link>
+            </li>
+          </ul>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+            {routes.map((route, i) => (
+              <RouteWithSubRoutes key={i} {...route} />
+            ))}
+            <Route path="*">
+              <Redirect to="/404" />
+            </Route>
+          </Switch>
+        </div>
+      </HashRouter>
+    );
+  }
 }
-
-export default App;

@@ -14,6 +14,13 @@ const routes = [
     component: lazyLoad(React.lazy(() => import("@/views/home/index"))),
   },
   {
+    path: "/todo",
+    component: lazyLoad(React.lazy(() => import("@/views/todo/index"))),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
     path: "/about",
     component: lazyLoad(React.lazy(() => import("@/views/about/index"))),
     children: [

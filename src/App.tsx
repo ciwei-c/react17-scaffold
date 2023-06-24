@@ -1,12 +1,15 @@
 import { HashRouter, Link, Redirect, Route, Switch } from "react-router-dom"
 import routes from '@/routes';
 import RouteWithSubRoutes from '@/components/RouteWithSubRoutes';
+import store from "@/store";
+import { observer } from "mobx-react"
 
-export default function App() {
+const App = () => {
   return (
     <HashRouter>
       <div>
         <ul>
+          用户：{store.user.userInfo.name}
           <li>
             <Link to="/home">home</Link>
           </li>
@@ -29,3 +32,5 @@ export default function App() {
     </HashRouter>
   );
 }
+
+export default observer(App)

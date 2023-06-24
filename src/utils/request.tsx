@@ -2,10 +2,8 @@ import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "ax
 import { Spin } from "antd";
 import ReactDOM from 'react-dom'
 
-const meta: any = import.meta
-console.log(import.meta)
 const service = axios.create({
-  baseURL: meta.env.VITE_BASE_URL,
+  baseURL: process.env.BASE_URL,
   timeout: 1500
 });
 

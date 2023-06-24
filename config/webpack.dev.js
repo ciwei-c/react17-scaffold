@@ -1,11 +1,13 @@
 const path = require('path');
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { merge } = require("webpack-merge")
 const commonConfig = require("./webpack.common.js")
+const mode = "development"
 
 module.exports = merge(commonConfig, {
   entry: './src/index.tsx',
-  mode: "development",
+  mode,
   devtool: "eval-source-map",
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -28,6 +30,12 @@ module.exports = merge(commonConfig, {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify({
+        NODE_ENV: mode,
+        BASE_URL: "/rs"
+      })
     })
   ]
 });
